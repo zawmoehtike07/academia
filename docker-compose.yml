@@ -1,0 +1,17 @@
+name: academia
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: academia-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: academia_db
+      POSTGRES_USER: academia_user
+      POSTGRES_PASSWORD: academia_pass
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:

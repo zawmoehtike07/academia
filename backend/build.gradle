@@ -32,8 +32,9 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
 
-    // H2 for development
-    runtimeOnly 'com.h2database:h2'
+    // PostgreSQL
+    runtimeOnly 'org.postgresql:postgresql'
+    implementation 'org.flywaydb:flyway-database-postgresql'
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

@@ -16,13 +16,13 @@ const LandingPage = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
             to="/login" 
-            className="px-8 py-4 bg-white text-[#1E3A8A] font-semibold rounded-2xl border border-slate-200 hover:bg-slate-50 transition shadow-sm"
+            className="px-8 py-4 bg-white text-[#0f766e] font-semibold rounded-2xl border border-slate-200 hover:bg-slate-50 transition shadow-sm"
           >
             Log In
           </Link>
           <Link 
             to="/register" 
-            className="px-8 py-4 bg-[#1E3A8A] text-white font-semibold rounded-2xl hover:bg-blue-900 transition shadow-lg shadow-blue-900/20"
+            className="px-8 py-4 bg-[#0f766e] text-white font-semibold rounded-2xl hover:bg-teal-800 transition shadow-lg shadow-teal-900/20"
           >
             Create an Account
           </Link>
