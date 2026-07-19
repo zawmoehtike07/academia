@@ -107,7 +107,7 @@ public class AuthServiceTest {
     void login_Success() {
         LoginRequest req = new LoginRequest("testuser", "password123");
         Authentication auth = mock(Authentication.class);
-        UserPrincipal principal = UserPrincipal.create(testUser);
+        UserPrincipal principal = UserPrincipal.from(testUser);
 
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(auth);
         when(auth.getPrincipal()).thenReturn(principal);
