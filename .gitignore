@@ -2,5 +2,10 @@ frontend.md
 .DS_Store
 .idea/
 .vscode/
-/backend/development.md
-/backend/backendfinal.md
+
+
+# Gradle files to ignore
+.gradle/
+build/
+out/
+bin/

@@ -325,24 +325,29 @@ function GroupDetail({ group, onBack }: { group: GroupResponse; onBack: () => vo
       {/* Chat Tab */}
       {activeTab === 'Chat' && (
         <div className="rounded-[2rem] border flex flex-col shadow-sm mb-4" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)', height: '500px' }}>
-          <div className="flex-1 overflow-y-auto p-5 space-y-5">
+          <div className="flex-1 overflow-y-auto p-5 space-y-5 flex flex-col">
             {chatLoading ? (
               <div className="flex items-center justify-center h-full text-sm" style={{ color: 'var(--text-muted)' }}>Loading messages…</div>
             ) : messages.length === 0 ? (
               <div className="flex items-center justify-center h-full text-sm" style={{ color: 'var(--text-muted)' }}>No messages yet. Say hello! 👋</div>
             ) : (
-              messages.map(msg => (
-                <div key={msg.id} className="space-y-1 flex flex-col items-start">
-                  <p className="text-xs ml-1" style={{ color: 'var(--text-muted)' }}>{msg.senderUsername}</p>
-                  <div className="p-3.5 rounded-2xl rounded-tl-sm max-w-[85%] text-sm leading-relaxed"
-                    style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}>
-                    {msg.content}
+              messages.map(msg => {
+                const isMe = msg.senderUsername === user?.username;
+                return (
+                  <div key={msg.id} className={`space-y-1 flex flex-col ${isMe ? 'items-end self-end' : 'items-start self-start'}`}>
+                    <p className={`text-xs ${isMe ? 'mr-1' : 'ml-1'}`} style={{ color: 'var(--text-muted)' }}>
+                      {isMe ? 'You' : msg.senderUsername}
+                    </p>
+                    <div className={`p-3.5 rounded-2xl ${isMe ? 'rounded-tr-sm bg-[#0f766e] text-white' : 'rounded-tl-sm'} max-w-[85%] text-sm leading-relaxed`}
+                      style={isMe ? {} : { background: 'var(--bg)', color: 'var(--text-primary)' }}>
+                      {msg.content}
+                    </div>
+                    <p className={`text-[10px] ${isMe ? 'mr-1' : 'ml-1'}`} style={{ color: 'var(--text-muted)' }}>
+                      {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </p>
                   </div>
-                  <p className="text-[10px] ml-1" style={{ color: 'var(--text-muted)' }}>
-                    {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </p>
-                </div>
-              ))
+                );
+              })
             )}
             <div ref={messagesEndRef} />
           </div>
