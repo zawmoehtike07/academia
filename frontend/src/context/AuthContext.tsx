@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
 interface User {
@@ -17,23 +17,18 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Check local storage for token on mount
-    const storedToken = localStorage.getItem('token');
+  const [token, setToken] = useState<string | null>(() => localStorage.getItem('token'));
+  const [user, setUser] = useState<User | null>(() => {
     const storedUser = localStorage.getItem('user');
-
-    if (storedToken && storedUser) {
+    if (storedUser) {
       try {
-        setToken(storedToken);
-        setUser(JSON.parse(storedUser));
+        return JSON.parse(storedUser);
       } catch (e) {
         console.error('Failed to parse user data from local storage');
       }
     }
-  }, []);
+    return null;
+  });
 
   const login = (userData: User, jwtToken: string) => {
     setUser(userData);
