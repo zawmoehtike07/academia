@@ -1,4 +1,6 @@
+import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { store } from './store/store';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import LandingPage from './pages/LandingPage';
@@ -13,10 +15,11 @@ import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
+    <Provider store={store}>
+      <ThemeProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
@@ -35,6 +38,7 @@ function App() {
         </BrowserRouter>
       </AuthProvider>
     </ThemeProvider>
+  </Provider>
   );
 }
 

@@ -69,8 +69,8 @@ cd backend
 - **Framework:** React 19 with Vite 8
 - **Language:** TypeScript 6
 - **Styling:** Tailwind CSS v4 (`@tailwindcss/vite`) with custom theme & dark mode support
-- **Icons:** Lucide React
-- **State & Routing:** React Context & React Router v7
+- **State Management:** Redux Toolkit (`@reduxjs/toolkit`) & React-Redux
+- **Routing:** React Router v7
 - **HTTP Client:** Axios
 - **Real-time Client:** STOMP (`@stomp/stompjs`) & SockJS (`sockjs-client`)
 
